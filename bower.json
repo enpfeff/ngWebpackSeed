@@ -1,0 +1,21 @@
+{
+  "name": "webpack-exercise",
+  "version": "0.0.0",
+  "authors": [
+    "Ian Pfeffer <ian.pfeff@gmail.com>"
+  ],
+  "description": "exercise for webpack",
+  "main": "server",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.4",
+    "jquery": "~2.1.4"
+  }
+}
