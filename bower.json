@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "angular": "~1.4.4",
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "angular-ui-router": "~0.2.15"
   }
 }

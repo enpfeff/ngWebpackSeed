@@ -1,0 +1,11 @@
+@import "variables";
+
+html {
+  height: 100%;
+
+  body {
+    height: 100%;
+    background-color: $wt-background-color;
+    margin: 0;
+  }
+}

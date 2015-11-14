@@ -4,11 +4,14 @@
 var $ = require('jquery');
 var angular = require('angular');
 var config = require('./config');
+var uiRouter = require('angular-ui-router');
 
 var requires = [
-    require('./core').name
+    require('./core').name,
+    'ui.router'
 ];
 
+// The main app
 var app = angular.module(config.app.name, requires);
 
 angular.element(document).ready(function() {

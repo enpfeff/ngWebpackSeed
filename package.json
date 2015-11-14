@@ -16,11 +16,18 @@
     "express": "~4.13.1",
     "glob": "^5.0.14",
     "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.0",
     "gulp-util": "^3.0.6",
     "less-middleware": "1.0.x",
     "lodash": "^3.10.1",
     "morgan": "~1.6.1",
+    "ramda": "^0.18.0",
     "serve-favicon": "~2.3.0",
     "webpack": "^1.11.0"
+  },
+  "devDependencies": {
+    "del": "^2.0.2",
+    "gulp-concat-css": "^2.2.0",
+    "gulp-minify-html": "^1.0.4"
   }
 }

@@ -2,12 +2,10 @@
 <html>
 <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='css/bundle.css'/>
 </head>
 <body>
-    <div ng-controller="MainController">
-        <p>Welcome {{name}}</p>
-    </div>
+    <div ui-view></div>
 <script src="bundle.js" type="application/javascript"></script>
 </body>
 </html>

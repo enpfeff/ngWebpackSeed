@@ -2,7 +2,10 @@
  * Created by ianpfeffer on 8/20/15.
  */
 module.exports = function(webpack){
+    var dist = './dist';
+
     return {
+        dist: dist,
         webpack : {
             resolve: {
                 root: "./bower_components"
@@ -12,9 +15,9 @@ module.exports = function(webpack){
                     new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
                 )
             ],
-            entry: './assets/app.js',
+            entry: './assets/js/app.js',
             output: {
-                path: "./dist",
+                path: dist,
                 filename: 'bundle.js'
             },
             module: {
@@ -25,6 +28,24 @@ module.exports = function(webpack){
                     { test: /[\/]angular\.js$/, loader: "exports?angular" }
                 ]
             }
+        },
+
+        sass: {
+            src: './assets/sass/**/*.scss',
+            dist: dist + '/css'
+        },
+        clean: [dist],
+        templates: {
+            src: './assets/templates/**/*.html',
+            dist: dist + '/templates',
+            minify: {
+                conditionals: true,
+                spare:true
+            }
+        },
+        js: {
+            // used for development watch
+            src: './assets/js/**/*.js'
         }
 
     }

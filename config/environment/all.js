@@ -3,7 +3,7 @@
  */
 module.exports = {
     app: {
-        title: 'Webpack exercise'
+        title: 'What Tools Web'
     },
     port: process.env.PORT || 3000
 };
