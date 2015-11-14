@@ -4,16 +4,17 @@
 var angular = require('angular');
 var config = require('../config');
 
-var app = angular.module(config.app.name + 'core', []);
+var app = angular.module(config.app.name + 'core', ['ui.router']);
 
 //controllers
-app.controller('MainController', require('./controllers/MainController'));
+app.controller('MainCtrl', require('./controllers/MainController'));
+app.controller('AppCtrl', require('./controllers/AppController'));
 
 //services
 
 //factorys
 
 //config
-
+app.config(require('./config/WtConfig'));
 
 module.exports = app;

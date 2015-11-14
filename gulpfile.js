@@ -7,16 +7,44 @@ var webpack = require("webpack");
 var config = require('./gulpConfig')(webpack);
 var concatCss = require('gulp-concat-css');
 var del = require('del');
+var nodemon = require('gulp-nodemon');
 var minifyHtml = require('gulp-minify-html');
+var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
+var livereload = require('gulp-livereload');
 
 // determine if we are in a production build
 var env = process.env.NODE_ENV || '';
 var prod = (env === 'production' || false);
 
+var beep = function() {
+    var os = require('os');
+    var file = 'gulp/error.wav';
+    if (os.platform() === 'linux') {
+        // linux
+        exec("aplay " + file);
+    } else {
+        // mac
+        console.log("afplay " + file);
+        exec("afplay " + file);
+    }
+};
+
 var tasks = {
     // cleaning up the dist folder more than likely
     clean : function() {
         del(config.clean)
+    },
+
+
+    lint: function() {
+        return gulp.src([
+            config.js.src
+        ]).pipe(jshint())
+            .pipe(jshint.reporter(stylish))
+            .on('error', function() {
+                beep();
+            });
     },
 
     //webpack build the js
@@ -63,20 +91,32 @@ var tasks = {
         },
         js: function() {
             gulp.watch(config.js.src, ['buildJs'])
+        },
+        server: function() {
+            nodemon({
+                script: 'server.js',
+                ext: 'html js',
+                env: {
+                    'NODE_ENV': 'development'
+                },
+                ignore: ['node_modules/**/*.*', 'dist/**/*.*', 'assets/**/*.*', 'gulpConfig.js', 'gulpfile.js'],
+                nodeArgs: ['--debug']
+            });
+        },
+        reload: function() {
+            gulp.watch('./dist/**/*.*').on('change', livereload.changed);
         }
     }
 };
 
-gulp.task('sass', function () {
-    gulp.src('./sass/**/*.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./css'));
-});
-
+//lint JS assets only
 var deps = prod ? ['clean'] : [];
+var lint = prod ? [] : ['lint'];
+
+gulp.task('lint', tasks.lint);
 gulp.task('clean', tasks.clean);
 gulp.task('buildSass', deps, tasks.buildSass);
-gulp.task("buildJs", deps, tasks.buildJs);
+gulp.task("buildJs", deps.concat(lint), tasks.buildJs);
 gulp.task('buildHtml', deps, tasks.buildHtml);
 
 //main build
@@ -86,7 +126,9 @@ var build = [
     'buildHtml'
 ];
 
+// dev build
 gulp.task('watch', function() {
+    livereload.listen();
     _.each(tasks.watch, function(watch) {
         watch();
     });

@@ -4,8 +4,8 @@
 var $ = require('jquery');
 var angular = require('angular');
 var config = require('./config');
-var uiRouter = require('angular-ui-router');
 
+require('angular-ui-router');
 var requires = [
     require('./core').name,
     'ui.router'
