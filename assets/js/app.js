@@ -8,6 +8,7 @@ var config = require('./config');
 require('angular-ui-router');
 var requires = [
     require('./core').name,
+    require('./auth').name,
     'ui.router'
 ];
 

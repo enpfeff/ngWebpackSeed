@@ -11,6 +11,16 @@ var config = ['$stateProvider', '$urlRouterProvider', function($stateProvider, $
         resolve: {}
     };
 
+    var login = {
+        url: '/login',
+        views: {
+            'main' : {
+                templateUrl: 'templates/auth/login.html',
+                controller: 'LoginCtrl as vm'
+            }
+        }
+    };
+
     // main view
     var dashboard = {
         //dashboard parent controller
@@ -21,12 +31,22 @@ var config = ['$stateProvider', '$urlRouterProvider', function($stateProvider, $
                 controller: 'MainCtrl as vm'
             }
         },
-        resolve:{}
+        data: {
+            roles: ['User']
+        },
+        resolve: {
+            Authorize: ['Authorization',
+                function(Authorization) {
+                    return Authorization.authorize();
+                }
+            ]
+        }
     };
 
     // add the state info to the stateProvider
     $stateProvider
         .state('what', what)
+        .state('what.login', login)
         .state('what.dashboard', dashboard);
 
 }];

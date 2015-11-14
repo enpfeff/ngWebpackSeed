@@ -129,6 +129,11 @@ var build = [
 // dev build
 gulp.task('watch', function() {
     livereload.listen();
+
+    tasks.buildHtml();
+    tasks.buildJs();
+    tasks.buildSass();
+
     _.each(tasks.watch, function(watch) {
         watch();
     });
