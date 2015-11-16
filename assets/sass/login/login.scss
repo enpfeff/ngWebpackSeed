@@ -1,2 +1,29 @@
 @import "../variables";
 
+#login {
+  height: 100%;
+  display: flex;
+  width: 100%;
+  background: url(/images/mountain-background.jpg);
+
+
+  .login-container {
+    @include box_shadow(3);
+    $login-container-height: 200px;
+    $login-container-width: 400px;
+
+    align-items: center;
+    position: fixed;
+    left: calc(50% - #{$login-container-height} / 2);
+    top: calc(50% - #{$login-container-width} / 2);
+    height: $login-container-height;
+    width: $login-container-width;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    .login-wrapper {
+
+    }
+  }
+
+
+}

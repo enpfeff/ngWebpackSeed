@@ -2,14 +2,15 @@
  * Created by ianpfeffer on 8/20/15.
  */
 var $ = require('jquery');
-var angular = require('angular');
 var config = require('./config');
-
 require('angular-ui-router');
+require('angular-material');
+
 var requires = [
     require('./core').name,
     require('./auth').name,
-    'ui.router'
+    'ui.router',
+    'ngMaterial'
 ];
 
 // The main app

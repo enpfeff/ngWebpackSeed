@@ -21,12 +21,12 @@ module.exports = function(webpack){
                 filename: 'bundle.js'
             },
             module: {
-                loaders: [
-                    // "test" should be a regular expression that is run
-                    // against the path
-                    // "loader" tells webpack what loaders should be applied
-                    { test: /[\/]angular\.js$/, loader: "exports?angular" }
-                ]
+                //loaders: [
+                //    // "test" should be a regular expression that is run
+                //    // against the path
+                //    // "loader" tells webpack what loaders should be applied
+                //    { test: /[\/]angular\.js$/, loader: "exports?angular" }
+                //]
             }
         },
 
@@ -46,6 +46,21 @@ module.exports = function(webpack){
         js: {
             // used for development watch
             src: './assets/js/**/*.js'
+        },
+        images: {
+            src: './assets/images/**/*.*',
+            dist: dist + '/images'
+        },
+        vendor: {
+            distCss: dist + '/vendor/css',
+            css: [
+                './bower_components/angular-material/angular-material.min.css',
+                './bower_components/angular-material/angular-material.layouts.min.css'
+            ],
+            distJs: dist + '/vendor/js',
+            js : [
+                './bower_components/angular/angular.min.js'
+            ]
         }
 
     }

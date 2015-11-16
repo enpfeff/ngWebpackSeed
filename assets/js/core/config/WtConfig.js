@@ -11,6 +11,7 @@ var config = ['$stateProvider', '$urlRouterProvider', function($stateProvider, $
         resolve: {}
     };
 
+    // login state
     var login = {
         url: '/login',
         views: {

@@ -59,6 +59,11 @@ var tasks = {
         });
     },
 
+    buildImgs: function() {
+        gulp.src(config.images.src)
+            .pipe(gulp.dest(config.images.dist));
+    },
+
     buildHtml: function() {
         //out source files
         var src = gulp.src(config.templates.src);
@@ -81,6 +86,16 @@ var tasks = {
             .pipe(gulp.dest(config.sass.dist));
     },
 
+    vendorCss: function(){
+        gulp.src(config.vendor.css)
+            .pipe(gulp.dest(config.vendor.distCss));
+    },
+
+    vendorJs: function() {
+        gulp.src(config.vendor.js)
+            .pipe(gulp.dest(config.vendor.distJs))
+    },
+
     // watch tasks for us
     watch: {
         sass: function() {
@@ -95,7 +110,7 @@ var tasks = {
         server: function() {
             nodemon({
                 script: 'server.js',
-                ext: 'html js',
+                ext: 'html js ejs',
                 env: {
                     'NODE_ENV': 'development'
                 },
@@ -105,6 +120,9 @@ var tasks = {
         },
         reload: function() {
             gulp.watch('./dist/**/*.*').on('change', livereload.changed);
+        },
+        images: function() {
+            gulp.watch(config.images.src, ['buildImgs']);
         }
     }
 };
@@ -118,18 +136,27 @@ gulp.task('clean', tasks.clean);
 gulp.task('buildSass', deps, tasks.buildSass);
 gulp.task("buildJs", deps.concat(lint), tasks.buildJs);
 gulp.task('buildHtml', deps, tasks.buildHtml);
+gulp.task('vendorCss', deps, tasks.vendorCss);
+gulp.task('vendorJs', deps, tasks.vendorJs);
+gulp.task('buildImgs', deps, tasks.buildImgs);
 
 //main build
 var build = [
+    'vendorCss',
+    'vendorJs',
     'buildJs',
     'buildSass',
-    'buildHtml'
+    'buildHtml',
+    'buildImgs'
 ];
 
 // dev build
 gulp.task('watch', function() {
     livereload.listen();
 
+    tasks.buildImgs();
+    tasks.vendorJs();
+    tasks.vendorCss();
     tasks.buildHtml();
     tasks.buildJs();
     tasks.buildSass();

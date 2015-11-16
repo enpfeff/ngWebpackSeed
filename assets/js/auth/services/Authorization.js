@@ -10,8 +10,11 @@ var service = ['$rootScope', '$state', 'User', function($rootScope, $state, User
             var isAuthenticated = User.isAuthenticated();
 
             if ($rootScope.toState.data.roles && $rootScope.toState.data.roles.length > 0 && !User.isInAnyRole($rootScope.toState.data.roles)) {
-                if (isAuthenticated) $state.go('accessdenied'); // user is signed in but not authorized for desired state
-                else {
+                // user is signed in but not authorized for desired state
+                if (isAuthenticated) {
+                    $state.go('what.denied');
+                } else {
+
                     // user is not authenticated. stow the state they wanted before you
                     // send them to the signin state, so you can return them when you're done
                     $rootScope.returnToState = $rootScope.toState;

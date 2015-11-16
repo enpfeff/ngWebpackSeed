@@ -2,8 +2,6 @@
  * Created by ianpfeffer on 11/13/15.
  * Copyright Netscout 2015
  */
-var angular = require('angular');
-
 var service = ['$http', '$q', function($http, $q) {
     var that = this;
     var _identity = undefined;

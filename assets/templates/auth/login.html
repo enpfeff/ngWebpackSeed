@@ -1,7 +1,16 @@
 
+<div id="login" layout="row" layout-align="center center">
+    <div class="login-container">
+        <md-content md-theme="docs-dark" layout-padding layout="column" layout-sm="column">
+            <md-input-container>
+                <label>Title</label>
+                <input ng-model="vm.action">
+            </md-input-container>
 
-<h4>User: {{vm.action}}</h4>
-<input type="text" placeholder="User" />
-<br />
-<h4>Password:</h4>
-<input type="text" placeholder="User" />
+            <md-input-container>
+                <label>Email</label>
+                <input ng-model="user.email" type="email">
+            </md-input-container>
+        </md-content>
+    </div>
+</div>
