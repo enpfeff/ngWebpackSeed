@@ -1,6 +1,5 @@
 /**
  * Created by ianpfeffer on 11/13/15.
- * Copyright Netscout 2015
  */
 var service = ['$http', '$q', function($http, $q) {
     var that = this;
