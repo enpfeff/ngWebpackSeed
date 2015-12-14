@@ -1,19 +1,18 @@
 /**
- * Created by ianpfeffer on 8/20/15.
+ * Created by ian on 12/14/15.
  */
-var config = require('../config');
+import angular from 'angular'
+import AppController from './controllers/AppController'
+import routing from './routes';
 
-var app = angular.module(config.app.name + 'core', ['ui.router']);
+import uiRouter from 'angular-ui-router';
 
-//controllers
-app.controller('MainCtrl', require('./controllers/MainController'));
-app.controller('AppCtrl', require('./controllers/AppController'));
+//define the module
+let core = angular.module('core', [uiRouter]);
 
-//services
+//add things to the module
+core.controller('AppController', AppController);
+core.config(routing);
 
-//factorys
-
-//config
-app.config(require('./config/WtConfig'));
-
-module.exports = app;
+//export the default value, only want to export one thing
+export default core;

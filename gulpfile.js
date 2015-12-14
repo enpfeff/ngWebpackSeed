@@ -164,5 +164,6 @@ gulp.task('watch', function() {
     _.each(tasks.watch, function(watch) {
         watch();
     });
+
 });
 gulp.task("build", build);

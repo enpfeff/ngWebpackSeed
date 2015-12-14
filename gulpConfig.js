@@ -11,22 +11,29 @@ module.exports = function(webpack){
                 root: "./bower_components"
             },
             plugins: [
-                new webpack.ResolverPlugin(
-                    new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
-                )
+                new webpack.ProvidePlugin({
+                    jQuery: 'jquery',
+                    $: 'jquery',
+                    'window.jQuery': 'jquery'
+                })
             ],
-            entry: './assets/js/app.js',
+            entry: './assets/js/index.js',
             output: {
                 path: dist,
                 filename: 'bundle.js'
             },
             module: {
-                //loaders: [
-                //    // "test" should be a regular expression that is run
-                //    // against the path
-                //    // "loader" tells webpack what loaders should be applied
-                //    { test: /[\/]angular\.js$/, loader: "exports?angular" }
-                //]
+                loaders: [
+                    {
+                        test: /\.js$/,
+                        exclude: /node_modules/,
+                        loader: "babel-loader",
+                        query: {
+                            presets: ['es2015']
+                        }
+                    },
+                    { test: /\.html/, loader: "html-loader" },
+                ]
             }
         },
 
@@ -36,7 +43,7 @@ module.exports = function(webpack){
         },
         clean: [dist],
         templates: {
-            src: './assets/templates/**/*.html',
+            src: './assets/**/*.html',
             dist: dist + '/templates',
             minify: {
                 conditionals: true,
@@ -53,14 +60,9 @@ module.exports = function(webpack){
         },
         vendor: {
             distCss: dist + '/vendor/css',
-            css: [
-                './bower_components/angular-material/angular-material.min.css',
-                './bower_components/angular-material/angular-material.layouts.min.css'
-            ],
+            css: [],
             distJs: dist + '/vendor/js',
-            js : [
-                './bower_components/angular/angular.min.js'
-            ]
+            js : []
         }
 
     }

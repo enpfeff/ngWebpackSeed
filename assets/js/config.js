@@ -1,9 +1,8 @@
 /**
- * Created by ianpfeffer on 8/20/15.
+ * Created by ian on 12/14/15.
  */
-
-module.exports = {
-    app : {
-        name: 'App'
+export default {
+    app: {
+        name: 'test'
     }
-};
+}
