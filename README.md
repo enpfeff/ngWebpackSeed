@@ -1,7 +1,9 @@
-# What Tools Web Client
+# Seed project
 + Angular 
 + Node 
 + Express
++ ES6
++ WebPack
 
 ## Start
 Install Server Assets
