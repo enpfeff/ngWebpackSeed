@@ -14,7 +14,7 @@ var stylish = require('jshint-stylish');
 var livereload = require('gulp-livereload');
 
 // determine if we are in a production build
-// gulp
+// gulp sdfg
 var env = process.env.NODE_ENV || '';
 var prod = (env === 'production' || false);
 
