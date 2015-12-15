@@ -3,7 +3,7 @@
  */
 module.exports = {
     app: {
-        title: 'What Tools Web'
+        title: 'Seed Project'
     },
     port: process.env.PORT || 3000
 };
