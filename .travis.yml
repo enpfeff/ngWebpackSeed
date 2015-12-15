@@ -1,7 +1,14 @@
 language: node_js
 node_js:
-  - "4.1"
-  - "4.0"
+- '4.1'
+- '4.0'
 before_script:
-  - npm install -g gulp
+- npm install -g gulp
 script: gulp build
+deploy:
+  provider: heroku
+  api_key:
+    secure: k1mWMxPKbfKfykgF6Gcm4XL+IuP+RrH9JBJ/1+TSuJuoYolpMPhcBNsSRGrfBdVqbAS3twcbRZZ+WivFCB5U0QOgwjLmqhWvcVagIXTOz/KTNGjUuttZ2oRt5rd95CPj7Vj5TX7wc7G2/vuhXRilPvmUeGUoRqc1LpL7bhx++/m0LJ7vN90KDlrlLpSJZrnIea2dB+STxcuU171fmf7RfQCzWVtcePITk4eTIy3SKP5bI6sPCToLur9h6kakPeQga3pdYO5fZbXWd02DLjugB5j/RB9IkotwGVw3Hcm4EMEJODdrA5BqZO6zaRBsXoTgbUkSELb5tVF4E8vALJdR6rWmfWKqihJm2dPST8vsKIwfl0jP5FZs0s0kQVbmC/XPUhNVOrD7iYtCWgopJLaxR99BK/F99c3XBmh9gqGUwN/uTg8XMAzuoHCL0DJ0aY3PDabrVz6+6l6kgysMwrkCHyrEJk0Gx2DsYtCnMydB5HAqmbV11fp0287Q1IziCtyR37wkv3hlyMZk7lTgwVOuwKPi/YQgOEFmS6UyXrYM2exdpquT2q1ePDp0WxRFXOIBWZGG/JiGI7n1N713XiCuNzSfw7HLH8YfaNsZSwl2Q7YhPwJp5ot76ALX1XbvEUIl2Ef1qgjPIIo8w5Z6BhxwHa6WMjJYdBPVoWA/ppZxnPg=
+  app:
+    master: woodland-kennels-dev
+  skip_cleanup: true
