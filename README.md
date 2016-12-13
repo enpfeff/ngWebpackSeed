@@ -1,3 +1,6 @@
+# Warning
+This is deprecated please see what-tools for an up to date seed project
+
 # Seed project
 + Angular 
 + Node 
